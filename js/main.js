@@ -78,12 +78,13 @@
 
 			   stats.each(function () {
 				   var $this = $(this);
+				   var countTo = parseInt($this.attr('data-count') || $this.text());
 
-				   $({ Counter: 0 }).animate({ Counter: $this.text() }, {
+				   $({ Counter: 0 }).animate({ Counter: countTo }, {
 				   	duration: 4000,
 				   	easing: 'swing',
 				   	step: function (curValue) {
-				      	$this.text(Math.ceil(curValue));
+				      	$this.text(Math.ceil(curValue) + '+');
 				    	}
 				  	});
 				});

@@ -42,12 +42,43 @@
 
 /** 
  * ===================================================================
+ * Page Loader
+ *
+ * ------------------------------------------------------------------- 
+ */
+#page-loader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #0f0f0f;
+	z-index: 99999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#page-loader .loader-content {
+	text-align: center;
+}
+
+#page-loader.fade-out {
+	opacity: 0;
+	transition: opacity 0.5s ease-out;
+	pointer-events: none;
+}
+
+
+/** 
+ * ===================================================================
  * 02. base style overrides - (_document-setup.scss)
  *
  * ------------------------------------------------------------------- 
  */
 html {
 	font-size: 10px;
+	scroll-behavior: smooth;
 }
 
 @media only screen and (max-width:1024px) {
@@ -71,7 +102,7 @@ html, body {
 }
 body {
 	background: #151515;
-	font-family: "lora-regular", serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 1.7rem;
 	line-height: 3rem;
 	color: #6e6e6e;
@@ -101,7 +132,7 @@ a:hover, a:focus, a:active {
  * ------------------------------------------------------------------- 
  */
 h1, h2, h3, h4, h5, h6, .h01, .h02, .h03, .h04, .h05, .h06 {
-	font-family: "poppins-semibold", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	color: #313131;
 	font-style: normal;
 	text-rendering: optimizeLegibility;
@@ -111,7 +142,7 @@ h3, .h03, h4, .h04 {
 	margin-bottom: 1.8rem;
 }
 h5, .h05, h6, .h06 {
-	font-family: "poppins-bold";
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	margin-bottom: 1.2rem;
 }
 h1, .h01 {
@@ -153,7 +184,7 @@ p img {
 	margin: 0;
 }
 p.lead {
-	font-family: "lora-regular", serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 2rem;
 	line-height: 1.8;
 	color: #888888;
@@ -170,10 +201,10 @@ em, i, strong, b {
 	font-weight: normal;
 }
 em, i {
-	font-family: "lora-italic", serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 }
 strong, b {
-	font-family: "lora-bold", serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 }
 small {
 	font-size: 1.2rem;
@@ -216,14 +247,14 @@ blockquote cite a, blockquote cite a:visited {
 	border: none;
 }
 abbr {
-	font-family: "poppins-bold", serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-variant: small-caps;
 	text-transform: lowercase;
 	letter-spacing: .05rem;
 	color: #888888;
 }
 var, kbd, samp, code, pre {
-	font-family: Consolas, "Andale Mono", Courier, "Courier New", monospace;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 }
 pre {
 	padding: 2.4rem 3rem 3rem;
@@ -323,7 +354,7 @@ table {
 	border-width: 0;
 	width: 100%;
 	max-width: 100%;
-	font-family: "lora-regular", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 }
 th, td {
 	padding: 1.5rem 3rem;
@@ -332,7 +363,7 @@ th, td {
 }
 th {
 	color: #313131;
-	font-family: "poppins-bold", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 }
 td {
 	line-height: 1.5;
@@ -526,7 +557,7 @@ select {
 	outline: none;
 	vertical-align: middle;
 	color: #313131;
-	font-family: "poppins-regular", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 1.5rem;
 	line-height: 3rem;
 	max-width: 100%;
@@ -563,7 +594,7 @@ select {
 }
 .ss-custom-select::after {
 	content: '\f0d7';
-	font-family: 'FontAwesome';
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	position: absolute;
 	top: 50%;
 	right: 1.5rem;
@@ -598,7 +629,7 @@ select:focus {
 	border-bottom: 1px solid #57595D;
 }
 label, legend {
-	font-family: "poppins-bold", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 1.4rem;
 	margin-bottom: .6rem;
 	color: #3b3b3b;
@@ -610,7 +641,7 @@ input[type="checkbox"], input[type="radio"] {
 label > .label-text {
 	display: inline-block;
 	margin-left: 1rem;
-	font-family: "poppins-regular", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	line-height: inherit;
 }
 label > input[type="checkbox"], label > input[type="radio"] {
@@ -652,7 +683,7 @@ input[type="submit"],
 input[type="reset"],
 input[type="button"] {
 	display: inline-block;
-	font-family: "poppins-bold", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 1.4rem;
 	text-transform: uppercase;
 	letter-spacing: .3rem;
@@ -761,7 +792,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 	position: relative;
 	margin-bottom: 3rem;
 	border-radius: 3px;
-	font-family: "poppins-regular", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 1.5rem;
 }
 .alert-box .close {
@@ -780,7 +811,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 .ss-info {
 	background-color: #d7ecfb;
-	color: #4a95cc;
+	color: #7B1818;
 }
 .ss-notice {
 	background-color: #fff099;
@@ -800,7 +831,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 	margin: 0;
 	padding: 1.5rem .6rem 0 0;
 	font-size: 8.4rem;
-	font-family: "poppins-bold", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	line-height: 6rem;
 	text-indent: 0;
 	background: transparent;
@@ -920,7 +951,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 .stats-tabs li a {
 	display: inline-block;
 	font-size: 2.5rem;
-	font-family: "poppins-bold", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	border: none;
 	color: #252525;
 }
@@ -931,7 +962,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 	display: block;
 	margin: .6rem 0 0 0;
 	font-size: 1.4rem;
-	font-family: "poppins-regular", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	color: #888888;
 }
 
@@ -955,7 +986,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 	position: absolute;
 	left: 0;
 	top: -3rem;
-	font-family: "poppins-bold", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	color: #313131;
 	text-transform: uppercase;
 	letter-spacing: .2rem;
@@ -972,7 +1003,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 	right: 0;
 	top: -3.6rem;
 	display: block;
-	font-family: "poppins-regular", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	color: white;
 	font-size: 1.1rem;
 	line-height: 1;
@@ -1034,7 +1065,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 	position: relative;
 }
 .section-intro h1 {
-	font-family: "poppins-semibold", serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 3.6rem;
 	color: #313131;
 	line-height: 1.25;
@@ -1097,7 +1128,7 @@ header .top-bar {
 	display: block;
 	background: #000000;
 	min-width: 220px;
-	min-height: 66px;
+	min-height: 75px;
 	position: absolute;
 	left: 90px;
 	top: 0;
@@ -1106,7 +1137,7 @@ header .logo {
 	float: left;
 	margin-left: 20px;
 	margin-right: 50px;
-	margin-top:8px;
+	margin-top: 12px;
 	position: relative;
 }
 header .logo a {
@@ -1117,10 +1148,10 @@ header .logo a {
 	font: 0/0 a;
 	text-shadow: none;
 	color: transparent;
-	width: 92px;
-	height: 45px;
+	width: 120px;
+	height: 50px;
 	background: url(/images/logo.png) no-repeat center;
-	background-size: 92px 45px;
+	background-size: contain;
 }
 
 /**
@@ -1220,7 +1251,7 @@ header .logo a {
 #main-nav-wrap {
 	display: block;
 	width: 100%;
-	font-family: "poppins-medium", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 1.5rem;
 	position: absolute;
 	top: 100%;
@@ -1294,14 +1325,14 @@ header .logo a {
  * ------------------------------------------------------------------- 
  */
 #intro {
-	background: #151515 url(../images/intro-bg.jpg) no-repeat center bottom;
+	background: black url(../images/intro-bg.png) no-repeat center center;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	background-size: cover;
-	background-attachment: fixed;
+	background-position: center center;
 	width: 	100%;
-	height: 100%;
-	min-height: 1080px;
+	height: 100vh;
+	min-height: 100vh;
 	display: table;
 	position: relative;
 	text-align: center;
@@ -1313,7 +1344,7 @@ header .logo a {
 	width: 100%;
 	height: 100%;
 	background: #111111;
-	opacity: .45;
+	opacity: .75;
 }
 
 .intro-content {
@@ -1326,7 +1357,7 @@ header .logo a {
 }
 .intro-content h1 {
 	color: #FFFFFF;
-	font-family: "poppins-medium", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 8.4rem;
 	line-height: 1.071;
 	max-width: 900px;
@@ -1337,8 +1368,8 @@ header .logo a {
 	text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 .intro-content h5 {
-	color: #3D85C6;
-	font-family: "poppins-bold", sans-serif;
+	color: #7B1818;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 2.3rem;
 	line-height: 1.565;
 	margin-bottom: 0;
@@ -1347,7 +1378,7 @@ header .logo a {
 	text-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
 }
 .intro-content .intro-position {
-	font-family: "lora-regular", serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 1.7rem;
 	line-height: 2.4rem;
 	text-transform: uppercase;
@@ -1384,12 +1415,12 @@ header .logo a {
 	letter-spacing: .25rem;
 }
 .intro-content .button:hover, .intro-content .button:focus {
-	border-color: #3D85C6
+	border-color: #7B1818
 }
 .intro-content .button::after {
 	display: inline-block;
 	content: "\f107";
-	font-family: fontAwesome;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 1.6rem;
 	line-height: inherit;
 	text-align: center;
@@ -1509,6 +1540,8 @@ header .logo a {
 	border-radius: 50%;
 	margin: .9rem 0 0 0;
 	float: left;
+	object-fit: cover;
+	object-position: center;
 }
 .intro-info .lead {
 	text-align: left;
@@ -1522,7 +1555,7 @@ header .logo a {
 	margin-bottom: 3.6rem;
 }
 .about-content h3 {
-	font-family: "poppins-bold", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 1.8rem;
 	text-transform: uppercase;
 	letter-spacing: .25rem;
@@ -1536,7 +1569,7 @@ header .logo a {
 	margin-bottom: .6rem;
 }
 .about-content .info-list li strong {
-	font-family: "poppins-bold", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	color: #313131;
 	text-transform: uppercase;
 	letter-spacing: .2rem;
@@ -1545,7 +1578,7 @@ header .logo a {
 }
 .about-content .info-list li span {
 	display: block;
-	font-family: "poppins-regular", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	color: #888888;
 	font-size: 1.5rem;
 	line-height: 1;
@@ -1683,7 +1716,7 @@ header .logo a {
 	margin-bottom: 0;
 }
 #resume .timeline-header p {
-	font-family: "poppins-regular", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 1.6rem;
 	color: #888888;
 }
@@ -1850,7 +1883,7 @@ header .logo a {
 	margin: 0;
 	padding: 0;
 	text-transform: uppercase;
-	font-family: "poppins-regular", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 1.2rem;
 	letter-spacing: .1rem;
 	color: rgba(255, 255, 255, 0.6);
@@ -1908,19 +1941,19 @@ header .logo a {
 	padding: 1.8rem 3.6rem 3rem;
 }
 .popup-modal .description-box h4 {
-	font-family: "poppins-bold", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 1.5rem;
 	line-height: 2.4rem;
 	margin-bottom: .6rem;
 }
 .popup-modal .description-box p {
-	font-family: "poppins-regular", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 1.4rem;
 	line-height: 2.4rem;
 	margin-bottom: 12px;
 }
 .popup-modal .categories {
-	font-family: "poppins-bold", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 1.1rem;
 	line-height: 1.8rem;
 	text-transform: uppercase;
@@ -1935,7 +1968,7 @@ header .logo a {
 	background: #000000;
 }
 .popup-modal .link-box a {
-	font-family: "poppins-bold", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 1.2rem;
 	line-height: 6rem;
 	color: #FFFFFF;
@@ -2183,7 +2216,7 @@ header .logo a {
  * ------------------------------------------------------------------- 
  */
 #stats {
-	background: #3D85C6;;
+	background: #7B1818;
 	padding-top: 7.2rem;
 	padding-bottom: 6rem;
 	text-align: center;
@@ -2207,7 +2240,7 @@ header .logo a {
 	font-size: 3.6rem;
 	margin-top: 1.2rem;
 	margin-bottom: 0;
-	font-family: "poppins-medium", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	color: white;
 }
 #stats .stat-title {
@@ -2300,7 +2333,7 @@ header .logo a {
 	clear: both;
 }
 #contact form .form-field label {
-	font-family: "poppins-bold", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 1.1rem;
 	line-height: 2.4rem;
 	position: absolute;
@@ -2366,7 +2399,7 @@ header .logo a {
 	color: #FFFFFF;
 }
 #contact button.submitform:hover, #contact button.submitform:focus {
-	background: #3D85C6;
+	background: #7B1818;
 }
 #message-warning, #message-success {
 	display: none;
@@ -2397,7 +2430,7 @@ header .logo a {
 }
 #submit-loader .text-loader {
 	display: none;
-	font-family: "poppins-bold", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	color: #FFFFFF;
 	letter-spacing: .3rem;
 	text-transform: uppercase;
@@ -2410,7 +2443,7 @@ header .logo a {
 }
 .contact-info {
 	margin: 4.8rem auto 0;
-	font-family: "poppins-regular", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 	font-size: 1.5rem;
 	text-align: center;
 }
@@ -2493,7 +2526,7 @@ header .logo a {
 footer {
 	padding-bottom: 3rem;
 	font-size: 1.4rem;
-	font-family: "poppins-regular", sans-serif;
+	font-family: "PetrovSans", "Noto Sans", sans-serif;
 }
 footer a, footer a:visited {
 	color: #FFFFFF;
@@ -2578,7 +2611,7 @@ footer .copyright span:last-child::after {
 	width: 6rem;
 	line-height: 6.6rem;
 	text-align: center;
-	background: #3D85C6;
+	background: #7B1818;
 	color: #FFFFFF;
 	text-align: center;
 	text-transform: uppercase;
